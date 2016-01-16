@@ -11,6 +11,12 @@ class DemoController < ApplicationController
   def hl7
   end
 
+  def parse
+    session[:stuff] = params
+    @hl7string = params
+    render action: :hl7
+  end
+
   def faxes
   end
 
