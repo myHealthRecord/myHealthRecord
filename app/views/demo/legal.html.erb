@@ -1,0 +1,31 @@
+
+<h1> At the doctor's office<h1>
+Display this message:
+
+I request an "authorization for disclosure of protected health information" form. Say this to your health provider.
+
+Radio buttons (B)/results (R):
+B1) The form is available online.
+R1) If we can provide in-app assistance to filling out the online form, that would be useful. This would be a browser plugin?
+B1-1)  I need to specify a record format. -> This goes back to B3) or B4), or B5).
+B2) My HR is available via a web portal.
+R2) Again, if we can provide in-app assistance to dealing with their web portal, that would be useful.
+B2-1)
+B3) They will provide my medical records by FAX.
+R3) Display a message with the FAX number associated with our system.
+B4) They will provide my medical records by direct export (HL7).
+R4) Display a message with instructions on how to connect their health export to our HL7 parser.
+B5) They will export my records via electronic media (CD, DVD, or flash drive).
+R5) Display a message with instructions on how to upload these records from their own PC.
+
+
+
+
+
+
+
+
+
+
+<h3> Overall goals </h3>
+1)  You are in a new doctor's office, you need to give them something, so that they send your medical data to the service.  So we need, a) an IP address (or whatever) for HL7 messages to go to, and b) a FAX number that can get fax messages.  2)  You have been to four doctor's offices, and their reports have been successfully uploaded.  You want to peruse your data, show it to a new physician, etc.  We need to call an API (for now I think I need Microsoft's) so that we can display the info in your PHR.  But this is for later.
