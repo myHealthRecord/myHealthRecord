@@ -4,4 +4,16 @@ class DemoController < ApplicationController
 
   def legal
   end
+
+  def user_stories
+  end
+
+  def hl7
+  end
+
+  def faxes
+  end
+
+  def business_model
+  end
 end
