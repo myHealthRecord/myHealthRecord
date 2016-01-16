@@ -19,7 +19,8 @@ class DemoController < ApplicationController
   end
 
   def to_s (text)
-    Hl7Parser.new(text).patient_name
+    h = Hl7Parser.new(text)
+    h.patient_name + " | " + h.service_id
   end
 
   def faxes
