@@ -1,0 +1,25 @@
+<h1> Handling HL7 </h1>
+
+
+<div class="row">
+  <div class="col-md-3">
+    <%= form_for(:demo, :url => {:action => 'parse'}) do |f| %>
+      <%= f.label('HL7 string') %>
+      <%= f.text_area(:text, size: "20x20", placeholder: @hl7string.nil? ? '' : @hl7string["demo"]["text"]) %>
+      <%= submit_tag("SEND") %>
+    <% end %>
+  </div>
+
+  <div class="col-md-3">
+    <div class="output">
+      <p><%= @hl7string.to_s %></p>
+    </div>
+  </div>
+
+</div>
+
+<h5> samples </h5>
+MSH|^~\&|CERNER||PriorityHealth||||ORU^R01|Q479004375T431430612|P|2.3| PID|||001677980||SMITH^CURTIS||19680219|M||||||||||929645156318|123456789| PD1||||1234567890^LAST^FIRST^M^^^^^NPI| OBR|1|341856649^HNAM_ORDERID|000002006326002362|648088^Basic Metabolic Panel|||20061122151600|||||||||1620^Hooker^Robert^L||||||20061122154733|||F|||||||||||20061122140000| OBX|1|NM|GLU^Glucose Lvl|59|mg/dL|65-99^65^99|L|||F|||20061122154733| - See more at: http://www.priorityhealth.com/provider/manual/office-mgmt/data-exchange/hl7/hl7-samples#sthash.d47rJcP6.dpuf
+
+<h5> notes </h5>
+<a href="http://www.priorityhealth.com/provider/manual/office-mgmt/data-exchange/hl7/hl7-samples">more sample hl7 strings</a>

@@ -4,11 +4,14 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'demo#index'
+  get 'demo' => 'demo#index'
   get 'demo/legal' => 'demo#legal'
   get 'demo/user-stories' => 'demo#user_stories'
   get 'demo/hl7' => 'demo#hl7'
   get 'demo/faxes' => 'demo#faxes'
   get 'demo/business-model' => 'demo#business_model'
+
+  post 'demo/parse' => 'demo#parse'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
