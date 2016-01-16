@@ -14,7 +14,12 @@ class DemoController < ApplicationController
   def parse
     session[:stuff] = params
     @hl7string = params
+    @result = to_s (@hl7string["demo"]["text"])
     render action: :hl7
+  end
+
+  def to_s (text)
+    Hl7Parser.new(text).patient_name
   end
 
   def faxes
@@ -22,4 +27,6 @@ class DemoController < ApplicationController
 
   def business_model
   end
+
 end
+
