@@ -1,31 +1,32 @@
 
-<h1> At the doctor's office<h1>
-Display this message:
+<h1> At the doctor's office</h1>
 
-I request an "authorization for disclosure of protected health information" form. Say this to your health provider.
-
-Radio buttons (B)/results (R):
-B1) The form is available online.
-R1) If we can provide in-app assistance to filling out the online form, that would be useful. This would be a browser plugin?
-B1-1)  I need to specify a record format. -> This goes back to B3) or B4), or B5).
-B2) My HR is available via a web portal.
-R2) Again, if we can provide in-app assistance to dealing with their web portal, that would be useful.
-B2-1)
-B3) They will provide my medical records by FAX.
-R3) Display a message with the FAX number associated with our system.
-B4) They will provide my medical records by direct export (HL7).
-R4) Display a message with instructions on how to connect their health export to our HL7 parser.
-B5) They will export my records via electronic media (CD, DVD, or flash drive).
-R5) Display a message with instructions on how to upload these records from their own PC.
-
-
-
-
-
-
-
-
-
-
-<h3> Overall goals </h3>
+<h2> Overall goals </h2>
 1)  You are in a new doctor's office, you need to give them something, so that they send your medical data to the service.  So we need, a) an IP address (or whatever) for HL7 messages to go to, and b) a FAX number that can get fax messages.  2)  You have been to four doctor's offices, and their reports have been successfully uploaded.  You want to peruse your data, show it to a new physician, etc.  We need to call an API (for now I think I need Microsoft's) so that we can display the info in your PHR.  But this is for later.
+
+
+<p> Messages to display on the screen are in <b>bold font</b>.  Each radio button (<i>B#</i>) is associated with a result from pressing on that radio button (<i>R#</i>).  Customized information is in {}s.
+
+<p>  The following is directly accessible from the homepage from the app.
+<p>  <b>"I request an authorization for disclosure of protected health information form." Say this to your health provider.</b>
+
+<p><i>B1</i> <b>The form is available online.</b>
+<p><i>R1</i> If we can provide in-app assistance to filling out the online form, that would be useful. This would be a browser plugin?
+<p>   <i>B1-1</i>  <b>They have provided a myHealthRecord access URL.</b>
+<p>   <i>B1-2</i>  <b>I need to specify a record format.</b> --- This goes back to <i>B[345]</i>.
+
+<p><i>B2</i> <b>My HR is available via a web portal.</b>
+<p><i>R2</i> <b>Please enter the URL, you will be redirected to your phone browser or if it is a myHealthRecord URL, we will use it automatically.</b>
+<p>  Again, if we can provide in-app assistance to dealing with their web portal, that would be useful.  Could our app specify itself as a handler for certain download types?
+<p>   <i>B2-1</i>  <b>They have provided a myHealthRecord access URL.</b>
+<p>   <i>B1-2</i>  <b>I need to specify a record format.</b> --- This goes back to <i>B[345]</i>.
+
+<p><i>B3</i>  They will provide my medical records by FAX.
+<p><i>R3</i> <b>We can accept medical records by FAX, give them the following number: {###-###-#####}</b>
+
+<p><i>B4</i> <b>They will provide my medical records by direct export (HL7).</b>
+<p><i>B4</i> <b>We can accept direct export, please provide your health provider with the following information: {username}:{sessionID}@myHealthRecord.com</b>
+
+<p><i>B5</i> <b>They will export my records via electronic media (CD, DVD, or flash drive).</b>
+<p><i>R5</i> <b>You will need a personal computer to upload the record.  A link has been sent to your registration e-mail, which you can use when the media arrives.</b>
+
