@@ -47,16 +47,14 @@
 </div>
 
 <div class="row">
-  <div class="col-md-6">
-    <div class="records">
+  <div class="records">
+    <div class="row">
       <% if @last_ten_titles %>
-        <div class="row">
-          <% @last_ten_titles.each do |title| %>
-            <div class="recordThumbnail col-md-2">
-              <span><%= title %></span>
-            </div>
-          <% end %>
-        </div>
+        <% @last_ten_titles.each do |title| %>
+          <div class="recordThumbnail col-md-2">
+            <span><%= title %></span>
+          </div>
+        <% end %>
       <% end %>
     </div>
   </div>

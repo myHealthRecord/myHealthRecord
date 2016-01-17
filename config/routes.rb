@@ -10,9 +10,11 @@ Rails.application.routes.draw do
   get 'demo/hl7' => 'demo#hl7'
   get 'demo/faxes' => 'demo#faxes'
   get 'demo/business-model' => 'demo#business_model'
+  get 'health_record/last_ten' => 'health_record#last_ten'
 
   post 'demo/parse' => 'demo#parse'
   post 'demo/save' => 'demo#save'
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
