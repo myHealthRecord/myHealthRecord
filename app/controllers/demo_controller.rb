@@ -9,13 +9,28 @@ class DemoController < ApplicationController
   end
 
   def hl7
+    if session[:last_ten]
+      @last_ten_titles = session[:last_ten].map{|id|
+        (HealthRecord.find id).title
+      }
+    end
   end
 
   def parse
-    session[:stuff] = params
     @hl7string = params
-    @result = to_s (@hl7string["demo"]["text"])
-    @summary = summary (@hl7string["demo"]["text"])
+    @hl7string_text = @hl7string["demo"]["text"]
+    session[:hl7string] = @hl7string_text
+    @result = to_s @hl7string_text
+    @summary = summary @hl7string_text
+    render action: :hl7
+  end
+
+  def save
+    @healthrecord = HealthRecord.create(
+      save_params
+    )
+    flash[:success] = true
+    session[:last_ten] = HealthRecord.last(10).map(&:id)
     render action: :hl7
   end
 
@@ -32,6 +47,12 @@ class DemoController < ApplicationController
 
   def business_model
   end
+
+  private
+
+    def save_params
+      params.require(:demo).permit(:hl7string, :notes, :title)
+    end
 
 end
 

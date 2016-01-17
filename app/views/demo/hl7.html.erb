@@ -5,25 +5,63 @@
   <div class="col-md-3">
     <%= form_for(:demo, :url => {:action => 'parse'}) do |f| %>
       <%= f.label('HL7 string') %>
-      <%= f.text_area(:text, size: "90x10", placeholder: @hl7string.nil? ? '' : @hl7string["demo"]["text"]) %>
-      <%= submit_tag("SEND") %>
+      <%= f.text_area(:text, size: "90x10", placeholder: @hl7string.nil? ? 'INCOMING HL7 STRING' : session[:hl7string], value: session[:hl7string]) %>
+      <%= submit_tag("PARSE", class: "btn") %>
     <% end %>
   </div>
 </div>
 
 <br>
+
+<div class="saveOuter">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="output">
+        <% unless @summary.nil? || @summary.patient_name.nil? %>
+          <p><b>Name:</b> <%= @summary.patient_name  %></p>
+          <p><b>Service:</b> <%= @summary.service_id  %></p>
+        <% else %>
+          <p><b>Error:</b> Malformed HL7 String</p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+      <%= form_for(:demo, :url => {:action => 'save'}, remote: true) do |f| %>
+
+        <%= f.label('Title') %>
+        <%= f.text_field(:title) %>
+        <%= f.label('Notes') %>
+        <%= f.text_field(:notes) %>
+        <%= f.text_area(:hl7string, size: "90x10", value: session[:hl7string]) %>
+        <%= submit_tag("SAVE", class: "btn") %>
+      <% end %>
+    </div>
+  </div>
+
+  <% if flash[:success] %>
+    <p>Saved!</p>
+  <% end %>
+</div>
+
 <div class="row">
   <div class="col-md-6">
-    <div class="output">
-      <% unless @summary.nil? || @summary.patient_name.nil? %>
-        <p><b>Name:</b> <%= @summary.patient_name  %></p>
-        <p><b>Service:</b> <%= @summary.service_id  %></p>
-      <% else %>
-        <p><b>Error:</b> Malformed HL7 String</p>
+    <div class="records">
+      <% if @last_ten_titles %>
+        <div class="row">
+          <% @last_ten_titles.each do |title| %>
+            <div class="recordThumbnail col-md-2">
+              <span><%= title %></span>
+            </div>
+          <% end %>
+        </div>
       <% end %>
     </div>
   </div>
 </div>
+
 
 
 <h5> samples </h5>
