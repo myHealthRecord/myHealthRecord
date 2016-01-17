@@ -15,8 +15,7 @@
 <div class="row">
   <div class="col-md-6">
     <div class="output">
-      <% unless @summary.patient_name.nil? %>
-        <p><%= @result  %></p>
+      <% unless @summary.nil? || @summary.patient_name.nil? %>
         <p><b>Name:</b> <%= @summary.patient_name  %></p>
         <p><b>Service:</b> <%= @summary.service_id  %></p>
       <% else %>
