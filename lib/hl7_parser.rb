@@ -8,9 +8,15 @@ class Hl7Parser
     @raw_text = raw_text
                   .gsub("\n", "\r")
                   .gsub("\r\r", "\r")
+    validate
+  end
+
+  def validate
+    hl7_object
   end
 
   def patient_name
+    return if @error
     begin
       hl7_object["PID"].patient_name.clean
     rescue
@@ -19,12 +25,20 @@ class Hl7Parser
   end
 
   def hl7_object
-    msg = HL7::Message.new
-    msg.parse raw_text
-    msg
+    begin
+      msg = HL7::Message.new
+      msg.parse raw_text
+      return msg unless raw_text.nil?
+      @error = "Error"
+    rescue NoMethodError 
+      @error = "Error"
+    rescue
+      @error = "Error"
+    end
   end
 
   def service_id
+    return if @error
     hl7_object["OBR"].universal_service_id.clean
   end
 
@@ -38,3 +52,16 @@ class String
     self.gsub("^", " ").strip
   end
 end
+
+class NilClass
+  def + arg
+    "" + arg
+  end
+  def to_s
+    ""
+  end
+  def to_str
+    ""
+  end
+end
+

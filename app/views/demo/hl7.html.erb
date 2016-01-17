@@ -15,9 +15,13 @@
 <div class="row">
   <div class="col-md-6">
     <div class="output">
-      <p><%= @result  %></p>
-      <p><b>Name:</b> <%= @summary.patient_name  %></p>
-      <p><b>Service:</b> <%= @summary.service_id  %></p>
+      <% unless @summary.patient_name.nil? %>
+        <p><%= @result  %></p>
+        <p><b>Name:</b> <%= @summary.patient_name  %></p>
+        <p><b>Service:</b> <%= @summary.service_id  %></p>
+      <% else %>
+        <p><b>Error:</b> Malformed HL7 String</p>
+      <% end %>
     </div>
   </div>
 </div>
@@ -26,7 +30,7 @@
 <h5> samples </h5>
 <pre>
 MSH|^~\&|SOURCE|383018129|PRIORITY HEALTH|382715520|2007100914484648||ORU^R01|0129938170710091448|P|2.3| 
-PID|1|1034157|012993817||LASTNAME^FIRSTNAME||19520101|M|||1234 MAIN^^DEARBORN HEIGHT^MI^48127|||||||| 
+PID|1|1034157|012993817||REICH^JOE||19520101|M|||1234 MAIN^^DEARBORN HEIGHT^MI^48127|||||||| 
 PID|1||94000000000^^^Priority Health||LASTNAME^FIRSTNAME||19400101|F| PD1|1|||1234567890^DOCLAST^DOCFIRST^M^^^^^NPI| 
 OBR|1|||80061^LIPID PROFILE^CPT-4||20070911|||||||||| 
 OBX|1|NM|13457-7^LDL (CALCULATED)^LOINC|49.000|MG/DL| 0.000 - 100.000|N|||F| 
