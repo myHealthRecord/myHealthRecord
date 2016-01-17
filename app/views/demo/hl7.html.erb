@@ -5,18 +5,20 @@
   <div class="col-md-3">
     <%= form_for(:demo, :url => {:action => 'parse'}) do |f| %>
       <%= f.label('HL7 string') %>
-      <%= f.text_area(:text, size: "20x20", placeholder: @hl7string.nil? ? '' : @hl7string["demo"]["text"]) %>
+      <%= f.text_area(:text, size: "90x10", placeholder: @hl7string.nil? ? '' : @hl7string["demo"]["text"]) %>
       <%= submit_tag("SEND") %>
     <% end %>
   </div>
+</div>
 
-  <div class="col-md-3">
+<div class="row">
+  <div class="col-md-6">
     <div class="output">
       <p><%= @result  %></p>
     </div>
   </div>
-
 </div>
+
 
 <h5> samples </h5>
 <pre>

@@ -5,11 +5,17 @@ class Hl7Parser
   attr_reader :raw_text
 
   def initialize(raw_text)
-    @raw_text = raw_text.gsub "\n", "\r"
+    @raw_text = raw_text
+                  .gsub("\n", "\r")
+                  .gsub("\r\r", "\r")
   end
 
   def patient_name
-    hl7_object["PID"].patient_name.clean
+    begin
+      hl7_object["PID"].patient_name.clean
+    rescue
+      hl7_object["PID"].first.patient_name.clean
+    end
   end
 
   def hl7_object
