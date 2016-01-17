@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get 'demo/business-model' => 'demo#business_model'
 
   post 'demo/parse' => 'demo#parse'
+  post 'demo/save' => 'demo#save'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
